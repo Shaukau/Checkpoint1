@@ -1,0 +1,32 @@
+# Pseudo-code du script addUsers.sh
+
+DÉBUT
+    # 1. Vérification des arguments
+    IF le nombre d'arguments ($#) est égal à 0 ALORS
+        AFFICHER "Il manque les noms d'utilisateurs en argument - Fin du script"
+        ARRÊTER le script (exit 1)
+    Fi
+
+    # 2. Boucle de traitement des utilisateurs
+    FOR usernam in "$@"
+    alors
+        
+        # 3. Test d'existence de l'utilisateur
+        IF la commande id $username réussit ALORS
+           Echo "L'utilisateur $username existe déjà"
+            
+        SINON
+            # 4. Tentative de création
+             sudo useradd $username dans /dev/null
+            
+            # 5. Vérification du résultat de la création
+            IF  ($?) est égal à 0
+            THEN
+                AFFICHER "L'utilisateur $username a été créé"
+           ELSE
+                AFFICHER "Erreur à la création de l'utilisateur $username"
+            FI
+            
+        FI
+    FI
+DONE fin de script
